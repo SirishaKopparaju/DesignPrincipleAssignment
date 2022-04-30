@@ -7,7 +7,7 @@ import org.junit.rules.ExpectedException;
 public class CensusAnalyserTest {
 	private static final String INDIA_CENSUS_CSV_FILE_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java";
     private static final String WRONG_CSV_FILE_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java";
-
+    private static final String INDIA_CENSUS_CSV_WRONG_FILETYPE = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java\\IndiaStateCensusData.pdf";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -28,6 +28,18 @@ public class CensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
         }
     }
+    @Test
+    public void givenIndianCensusCSVFileReturnsInCorrecFileType_But_PathShouldBeCorrect() {
+    	try {
+        CensusAnalyser censusAnalyzer = new CensusAnalyser();
+       
+            int numOfRecord = censusAnalyzer.loadIndiaCensusData(INDIA_CENSUS_CSV_WRONG_FILETYPE);
+            Assert.assertEquals(29, numOfRecord);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 
 
