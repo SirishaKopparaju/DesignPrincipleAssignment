@@ -8,8 +8,8 @@ public class CensusAnalyserTest {
 	private static final String INDIA_CENSUS_CSV_FILE_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java";
     private static final String WRONG_CSV_FILE_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java";
     private static final String INDIA_CENSUS_CSV_WRONG_FILETYPE = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\java\\IndiaStateCensusData.pdf";
-    private static final String INDIA_CENSUS_CSV_PATH_DELIMETER = "E:\\eclipseProgram\\untitled\\Census-Analyzer\\src\\main//resources//IndiaStateCensusData.pdf";
-
+    private static final String INDIA_CENSUS_CSV_PATH_DELIMETER = "D:\\\\Design\\\\DesignPrinciples\\\\lib\\\\src\\\\test\\\\java\\\\IndiaStateCensusData.pdf";
+    private static final String INDIA_CENSUS_CSV_PATH_HEADER = "D:\\\\Design\\\\DesignPrinciples\\\\lib\\\\src\\\\test\\\\java\\\\IndiaStateCensusDataHeader.pdf";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -50,6 +50,17 @@ public class CensusAnalyserTest {
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void givenIndianCensusCSVFileHaveIncorrectHeader() {
+        CensusAnalyser censusAnalyzer = new CensusAnalyser();
+        try {
+            censusAnalyzer.loadIndiaCensusData(INDIA_CENSUS_CSV_PATH_HEADER);
+            Assert.assertTrue("Wrong header in csv file", true);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
