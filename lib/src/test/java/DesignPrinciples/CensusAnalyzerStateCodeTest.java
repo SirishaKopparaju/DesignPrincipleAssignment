@@ -6,7 +6,8 @@ import org.junit.Test;
 public class CensusAnalyzerStateCodeTest {
 
 	private static final String INDIA_STATE_CSV_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.csv";
-    private static final String INDIA_STATE_CSV_WRONG_FILETYPE = "E:\\\\eclipseProgram\\\\untitled\\\\Census-Analyzer\\src\\main\\resources\\IndiaStateCode.pdf";
+    private static final String INDIA_STATE_CSV_WRONG_FILETYPE = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.pdf";
+    private static final String INDIA_STATE_CSV_PATH_DELIMETER = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.csv";
 
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
@@ -34,6 +35,16 @@ public class CensusAnalyzerStateCodeTest {
         try {
             int numOfRecord = censusAnalyzer.loadIndiaCensusData(INDIA_STATE_CSV_WRONG_FILETYPE);
             Assert.assertEquals(29, numOfRecord);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenIndianStateCSVFileReturnsIncorrectDelimeter() {
+        CensusAnalyser censusAnalyzer = new CensusAnalyser();
+        try {
+            censusAnalyzer.loadIndiaCensusData(INDIA_STATE_CSV_PATH_DELIMETER);
+            Assert.assertTrue("Wrong delimiter", true);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
