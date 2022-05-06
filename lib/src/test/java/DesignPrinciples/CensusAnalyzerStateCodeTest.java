@@ -8,6 +8,7 @@ public class CensusAnalyzerStateCodeTest {
 	private static final String INDIA_STATE_CSV_PATH = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.csv";
     private static final String INDIA_STATE_CSV_WRONG_FILETYPE = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.pdf";
     private static final String INDIA_STATE_CSV_PATH_DELIMETER = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCode.csv";
+    private static final String INDIA_STATE_CSV_PATH_HEADER = "D:\\Design\\DesignPrinciples\\lib\\src\\test\\resources\\IndiaStateCodeHeader.csv";
 
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
@@ -45,6 +46,16 @@ public class CensusAnalyzerStateCodeTest {
         try {
             censusAnalyzer.loadIndiaCensusData(INDIA_STATE_CSV_PATH_DELIMETER);
             Assert.assertTrue("Wrong delimiter", true);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenIndianStateCSVFileHaveIncorrectHeader() {
+        CensusAnalyser censusAnalyzer = new CensusAnalyser();
+        try {
+            censusAnalyzer.loadIndiaCensusData(INDIA_STATE_CSV_PATH_HEADER);
+            Assert.assertTrue("Wrong header in csv file", true);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
